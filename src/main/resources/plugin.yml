@@ -1,0 +1,29 @@
+name: Sentinel-TextDisplays
+version: ${project.version}
+main: github.dimazbtw.displays.Main
+api-version: "1.19"
+description: Per-player Text Display entities with PlaceholderAPI, ItemsAdder/Nexo, HEX colors, scaling and click interactions.
+author: dimazbtw
+website: https://github.com/dimazbtw
+
+# Requires the standalone PacketEvents plugin (https://www.spigotmc.org/resources/80279/).
+depend:
+  - packetevents
+
+# Optional integrations - the plugin runs fully without any of them.
+softdepend:
+  - PlaceholderAPI
+  - ItemsAdder
+  - Nexo
+
+commands:
+  textdisplays:
+    description: Create and manage text displays.
+    usage: /td help
+    permission: displays.admin
+    aliases: [td, sd, displays, textdisplay]
+
+permissions:
+  displays.admin:
+    description: Full access to create and manage text displays.
+    default: op

@@ -1,0 +1,43 @@
+# ============================================================================
+#  Sentinel-TextDisplays
+#  Per-player Text Displays - PlaceholderAPI, ItemsAdder/Nexo, HEX colors,
+#  scaling and click interactions. Works on Minecraft 1.19.4+.
+#
+#  Hologram files use the DecentHolograms format (one file per display in the
+#  "displays" folder): location, display-range, update-range, update-interval,
+#  facing, down-origin and pages -> lines/actions.
+#
+#  Colors: legacy '&' codes, '&#RRGGBB' or '<#RRGGBB>' hex, and
+#          '<gradient:#RRGGBB:#RRGGBB>text</gradient>'.
+# ============================================================================
+
+settings:
+  # Prefix used in plugin chat messages.
+  prefix: "&8[&bDisplays&8]&r "
+
+  # Defaults applied when you run "/td create <name>".
+  default-display-range: 48      # blocks within which the display is shown
+  default-update-range: 48       # blocks within which placeholders keep updating
+  default-update-interval: 20    # ticks between placeholder updates (20 = 1s)
+  default-scale: 1.0
+  default-billboard: CENTER      # FIXED, VERTICAL, HORIZONTAL or CENTER
+  default-background: default    # default, transparent, #RRGGBB or #AARRGGBB
+
+  # Default click hitbox size used the first time you add a click action.
+  default-click-width: 2.0
+  default-click-height: 1.0
+
+  # Minimum time between click actions per player per display (milliseconds).
+  click-cooldown-ms: 500
+
+  debug: false
+
+messages:
+  no-permission: "&cYou don't have permission to do that."
+  player-only: "&cOnly players can use this command."
+  invalid-id: "&cInvalid name. Use letters, numbers, '-' and '_' (max 32 characters)."
+  already-exists: "&cA display named &f%id% &calready exists."
+  not-found: "&cThere is no display named &f%id%&c."
+  created: "&aCreated display &f%id%&a. Edit it with &f/td line add %id% <text>"
+  deleted: "&aDeleted display &f%id%&a."
+  reloaded: "&aReloaded the configuration and all displays."

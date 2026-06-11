@@ -1,0 +1,124 @@
+# ============================================================================
+#  Sentinel-TextDisplays - example display
+#  This file shows EVERY available option. Edit it freely, then run /td reload.
+#  In-game you can edit everything with /td edit example (or /td gui).
+# ============================================================================
+
+# Where the display is: "world:x:y:z". 'facing' is the rotation in degrees
+# (only visible with billboard FIXED or VERTICAL).
+location: "world:0.500:101.000:0.500"
+facing: 0.0
+
+# Set to false to hide the display without deleting it (/td disable example).
+enabled: true
+
+# display-range  = how close (blocks) a player must be to SEE the display.
+# update-range   = how close a player must be for placeholders to keep refreshing.
+# update-interval = ticks between placeholder updates (20 ticks = 1 second).
+display-range: 48.0
+update-range: 48.0
+update-interval: 20
+
+# When true, the location marks the BOTTOM of the text instead of the top.
+down-origin: false
+
+# ----------------------------------------------------------------------------
+# PAGES - each page has its own lines and click actions.
+# Players switch pages through actions (NEXT_PAGE / PREV_PAGE / PAGE).
+# Click types: LEFT, RIGHT, SHIFT_LEFT, SHIFT_RIGHT.
+# Action format: 'TYPE:data' - placeholders work inside the data too.
+# ----------------------------------------------------------------------------
+pages:
+# ------------------------------- Page 1 -------------------------------------
+- lines:
+  - content: '<gradient:#00c6ff:#0072ff>&lWelcome</gradient>'
+  - content: '&7Hello, &f%player_name%&7!'
+  - content: ''
+  - content: '&#ffcc00Right-click &7to browse &8(1/3)'
+  actions:
+    RIGHT:
+    - 'SOUND:UI_BUTTON_CLICK:1:1.2'
+    - 'NEXT_PAGE'
+    LEFT:
+    - 'MESSAGE:&bThis is the &fexample &bdisplay. Left-click does actions too!'
+    SHIFT_RIGHT:
+    - 'SOUND:ENTITY_PLAYER_LEVELUP:1:1'
+    - 'MESSAGE:&aYou sneaked + right-clicked!'
+# ------------------------------- Page 2 -------------------------------------
+- lines:
+  - content: '&b&lServer Info &8(2/3)'
+  - content: '&7Your world: &f%player_world%'
+  - content: '&7Online: &f%server_online%'
+  - content: ''
+  - content: '&#ffcc00Right-click &7next &8| &#ffcc00Left-click &7back'
+  actions:
+    RIGHT:
+    - 'SOUND:UI_BUTTON_CLICK:1:1.2'
+    - 'NEXT_PAGE'
+    LEFT:
+    - 'SOUND:UI_BUTTON_CLICK:1:0.8'
+    - 'PREV_PAGE'
+    SHIFT_RIGHT:
+    - 'CONSOLE:say %player_name% reached page 2 of the example display'
+# ------------------------------- Page 3 -------------------------------------
+- lines:
+  - content: '&d&lActions Demo &8(3/3)'
+  - content: '&7Shift-left-click: &fVIP-only teleport to spawn'
+  - content: '&7Shift-right-click: &fconnect to the lobby server'
+  - content: ''
+  - content: '&#ffcc00Right-click &7to restart the tour'
+  actions:
+    RIGHT:
+    - 'SOUND:ENTITY_EXPERIENCE_ORB_PICKUP:1:1'
+    - 'PAGE:1'
+    LEFT:
+    - 'PREV_PAGE'
+    SHIFT_LEFT:
+    # PERMISSION stops the remaining actions if the player lacks the node.
+    - 'PERMISSION:example.vip'
+    - 'TELEPORT:world:0.5:101.0:0.5:0:0'
+    - 'COMMAND:/me teleported using the example display'
+    SHIFT_RIGHT:
+    - 'CONNECT:lobby'
+
+# ----------------------------------------------------------------------------
+# TEXT-DISPLAY OPTIONS (size & appearance)
+# ----------------------------------------------------------------------------
+
+# Text size per axis [x, y, z]. 1.0 = vanilla size. /td scale example 1.5
+scale:
+- 1.5
+- 1.5
+- 1.5
+
+# How the display rotates to face players: FIXED, VERTICAL, HORIZONTAL, CENTER.
+billboard: CENTER
+
+# Background behind the text: default, transparent, '#RRGGBB' or '#AARRGGBB'.
+background: '#59000000'
+
+# Text opacity from 0 (invisible) to 255 (opaque).
+text-opacity: 255
+
+# Max pixels per line before the text wraps.
+line-width: 220
+
+# Vanilla text shadow under the characters.
+text-shadow: true
+
+# When true the text is visible through blocks.
+see-through: false
+
+# Multi-line text alignment: LEFT, CENTER, RIGHT.
+text-alignment: CENTER
+
+# Light override (0-15). Use -1 -1 to follow the world lighting.
+brightness-block: 15
+brightness-sky: 15
+
+# Only players with this permission see the display ('' = everyone).
+view-permission: ''
+
+# Click hitbox size (blocks). Must be > 0 for the click actions to work.
+click-width: 2.5
+click-height: 1.6

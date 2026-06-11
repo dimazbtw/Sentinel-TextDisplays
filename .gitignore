@@ -1,0 +1,15 @@
+# Build output
+target/
+*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.iws
+*.ipr
+
+# OS / logs
+.DS_Store
+Thumbs.db
+*.log
